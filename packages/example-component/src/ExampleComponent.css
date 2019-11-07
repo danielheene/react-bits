@@ -1,0 +1,8 @@
+.example-component {
+  padding: 5px;
+  border: 1px dashed #16a085;
+
+  &:hover {
+    border-color: #59cf98;
+  }
+}

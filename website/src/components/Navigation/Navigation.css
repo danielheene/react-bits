@@ -1,0 +1,91 @@
+.navigation {
+  background-color: #f2f2f2;
+  border: 1px solid #fcfcfc;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: grid;
+  grid-row-gap: 20px;
+  grid-auto-rows: min-content;
+}
+
+.navigation__section {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.navigation__section-header {
+  font-family: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #7f7f7f;
+  margin-bottom: 5px;
+}
+
+.navigation__list {
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation__item {
+  font-family: inherit;
+  margin: 0;
+  padding: 3px;
+  list-style-type: none;
+}
+
+@keyframes stretchDotty {
+  from {
+    height: 4px;
+  }
+
+  to {
+    height: 1em;
+  }
+}
+
+.navigation__link {
+  color: #444444;
+  display: inline-block;
+  padding-left: 10px;
+  position: relative;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 120ms ease-in-out;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 4px;
+    border-radius: 2px;
+    background-color: #1a535c;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 120ms ease-in-out;
+  }
+
+  &:hover {
+    opacity: 1;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &--active::before {
+    height: 1em;
+    opacity: 1;
+    animation-duration: 100ms;
+    animation-name: stretchDotty;
+    animation-timing-function: ease-in-out;
+  }
+}

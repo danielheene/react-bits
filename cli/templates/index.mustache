@@ -1,0 +1,8 @@
+{{#isComponent}}
+import './{{{packageName}}}.css';
+
+export { {{{packageName}}} } from './{{{packageName}}}';
+{{/isComponent}}
+{{^isComponent}}
+export const {{{packageName}}} = () => true;
+{{/isComponent}}

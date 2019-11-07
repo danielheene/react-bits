@@ -1,0 +1,53 @@
+name: Website Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Install dependencies
+        if: success()
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: ESLint
+        if: success()
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: lint:eslint
+
+      - name: Stylelint
+        if: success()
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: lint:stylelint
+
+      - name: Build React libraries
+        if: success()
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build:packages
+
+      - name: Build Website
+        if: success()
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build:website
+
+      - name: Deploying Website
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: website/public

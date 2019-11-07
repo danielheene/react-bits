@@ -1,0 +1,29 @@
+{
+  "name": "{{{packageNameRegistry}}}",
+  "version": "0.0.0",
+  "description": "{{{packageDescription}}}",{{^isHidden}}
+  "homepage": "{{{packageHomepage}}}",{{/isHidden}}
+  "bugs": "{{{workspaceBugs}}}",
+  "repository": {
+    "type": "{{{packageRepository.type}}}",
+    "url": "{{{packageRepository.url}}}",
+    "directory": "{{{packageRepository.directory}}}"
+  },
+  "license": "{{{workspaceLicense}}}",
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "echo \"error: run build script from monorepo root.\" && exit 1",
+    "develop": "echo \"error: run develop script from monorepo root.\" && exit 1",
+    "test": "echo \"error: run test script from monorepo root.\" && exit 1"
+  },{{#isComponent}},
+  "peerDependencies": {
+    "react": "{{{workspaceReactVersion}}}",
+    "react-dom": "{{{workspaceReactDOMVersion}}}"
+  }{{/isComponent}}
+}

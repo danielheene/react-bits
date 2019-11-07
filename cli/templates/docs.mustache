@@ -1,0 +1,46 @@
+---
+name: "{{{packageName}}}"
+registryName: "{{{packageNameRegistry}}}"
+repositoryUrl: "{{{packageRepositoryBlobUrl}}}"
+keywords:
+{{#packageKeywords}}
+  - {{.}}
+{{/packageKeywords}}
+---
+
+import { {{{packageName}}} } from '{{{packageNameRegistry}}}';
+
+# {{{packageName}}}
+{{#packageDescription}}
+
+> {{{packageDescription}}}{{/packageDescription}}
+
+## Import
+
+```js
+import {
+  {{{packageName}}}
+} from '{{{packageNameRegistry}}}';
+```
+
+## Usage
+
+```jsx
+<{{{packageName}}}>
+  might be fancy here :)
+</{{{packageName}}}>
+```
+{{#isComponent}}
+
+## Example
+
+<example>
+    <{{{packageName}}} />
+</example>
+{{/isComponent}}
+
+## Props
+
+| Name    | Type                     | Default     | Description       |
+| ------- | ------------------------ | ----------- | ----------------- |
+| example | `active`, `inactive`     | `inactive`  | example status    |

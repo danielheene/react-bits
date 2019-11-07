@@ -1,0 +1,29 @@
+{
+  "name": "@react-bits/example-component",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "https://react-bits.com/docs/components/example-component",
+  "bugs": "https://github.com/danielheene/react-bits/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielheene/react-bits.git",
+    "directory": "packages/example-component"
+  },
+  "license": "MIT",
+  "files": [
+    "build"
+  ],
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "echo \"error: run build script from monorepo root.\" && exit 1",
+    "develop": "echo \"error: run develop script from monorepo root.\" && exit 1",
+    "test": "echo \"error: run test script from monorepo root.\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}

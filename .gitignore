@@ -1,0 +1,10 @@
+.cache/
+.idea/
+.nyc_output/
+.vscode/
+build/
+coverage/
+dist/
+node_modules/
+package-lock.json
+public/

@@ -1,0 +1,13 @@
+import React, { FC } from 'react';
+
+interface {{{packageName}}}Props {
+  name?: string;
+}
+
+export const {{{packageName}}}: FC<{{{packageName}}}Props> = ({
+    name = 'Unknown User'
+}) => (
+  <div className="{{{packageNameParam}}}">
+      Hello {name} ✋
+  </div>
+);

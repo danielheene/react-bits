@@ -1,0 +1,168 @@
+{
+  "name": "react-bits",
+  "version": "0.0.0",
+  "private": true,
+  "keywords": [
+    "react",
+    "react-bits",
+    "react-component",
+    "react-dom",
+    "react-hook",
+    "react-utility"
+  ],
+  "homepage": "https://react-bits.com",
+  "bugs": "https://github.com/danielheene/react-bits/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielheene/react-bits.git"
+  },
+  "license": "MIT",
+  "author": "Daniel Heene <mail@danielheene.de> (https://github.com/danielheene)",
+  "workspaces": [
+    "website",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "run-s build:packages build:website",
+    "prebuild:packages": "yarn clean:packages",
+    "build:packages": "NODE_ENV=production lerna exec --ignore website -- rollup -c=../../rollup.config.js",
+    "prebuild:website": "yarn clean:website",
+    "build:website": "NODE_ENV=production lerna exec --scope website -- gatsby build",
+    "clean": "run-s clean:*",
+    "clean:logs": "rimraf *.log **/*.log || exit 0",
+    "clean:packages": "rimraf packages/*/{build,dist,.cache} || 0",
+    "clean:website": "lerna exec --scope website -- gatsby clean",
+    "cli": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' ts-node cli/cli.ts",
+    "cli:create": "yarn cli create",
+    "deploy": "run-s deploy:*",
+    "deploy:website": "gh-pages -d website/public -b gh-pages",
+    "develop": "run-p develop:*",
+    "develop:packages": "lerna exec --ignore website -- rollup -c=../../rollup.config.js -w",
+    "develop:website": "lerna exec --scope website -- gatsby develop",
+    "format": "run-s format:*",
+    "format:eslint": "yarn lint:eslint --fix",
+    "format:packages": "sort-package-json package.json website/package.json packages/*/package.json",
+    "format:prettier": "yarn lint:prettier --write",
+    "format:stylelint": "yarn lint:stylelint --fix",
+    "postinstall": "lerna bootstrap",
+    "lint": "run-s lint:*",
+    "lint:eslint": "eslint --ext=js --ext=jsx --ext=ts --ext=tsx packages website",
+    "lint:prettier": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,scss,less,yaml}\"",
+    "lint:stylelint": "stylelint \"**/*.{css,jsx,tsx}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{css}": [
+      "stylelint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,js}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{tsx,jsx}": [
+      "prettier --write",
+      "stylelint --fix",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{yaml,html}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    "last 1 chrome version",
+    "last 1 ff version",
+    "last 1 edge version",
+    "last 1 safari version",
+    "not dead",
+    "not op_mini all",
+    "not ie > 1",
+    "not ie_mob > 1",
+    "not dead"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@types/del": "^4.0.0",
+    "@types/execa": "^2.0.0",
+    "@types/listr": "^0.14.2",
+    "@types/mkdirp": "^0.5.2",
+    "@types/mustache": "^0.8.32",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "@types/react-helmet": "^5.0.14",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.0",
+    "@types/rollup-plugin-postcss": "^2.0.0",
+    "@types/write": "^2.0.0",
+    "@types/yargs": "^13.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "@wessberg/rollup-plugin-ts": "^1.1.73",
+    "autoprefixer": "^9.7.1",
+    "babel-eslint": "^10.0.3",
+    "change-case": "^3.1.0",
+    "del": "^5.1.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "execa": "^3.2.0",
+    "find-yarn-workspace-root": "^1.2.1",
+    "gh-pages": "^2.1.1",
+    "husky": "^3.0.9",
+    "lerna": "^3.18.3",
+    "lint-staged": "^9.4.2",
+    "listr": "^0.14.3",
+    "mkdirp": "^0.5.1",
+    "mustache": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-clean": "^1.1.0",
+    "postcss-comment": "^2.0.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-font-family-system-ui": "^4.1.1",
+    "postcss-import": "^12.0.1",
+    "precss": "^4.0.0",
+    "prettier": "^1.18.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "rollup": "^1.26.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^1.1.0",
+    "rollup-plugin-node-resolve": "^5.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "sort-package-json": "^1.22.1",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-high-performance-animation": "^1.3.0",
+    "stylelint-no-unsupported-browser-features": "^4.0.0",
+    "stylelint-prettier": "^1.1.1",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4",
+    "typescript-plugin-styled-components": "^1.4.3",
+    "write": "^2.0.0",
+    "yargs": "^14.2.0"
+  },
+  "engines": {
+    "node": "^10.15",
+    "yarn": "^1.17"
+  },
+  "cli": {
+    "cli": "utils/cli.ts"
+  }
+}
