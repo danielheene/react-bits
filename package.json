@@ -28,6 +28,7 @@
     "build:packages": "NODE_ENV=production lerna exec --ignore website -- rollup -c=../../rollup.config.js",
     "prebuild:website": "yarn clean:website",
     "build:website": "NODE_ENV=production lerna exec --scope website -- gatsby build",
+    "postbuild:website": "echo \"react-bits.com\" > website/public/CNAME",
     "clean": "run-s clean:*",
     "clean:logs": "rimraf *.log **/*.log || exit 0",
     "clean:packages": "rimraf packages/*/{build,dist,.cache} || 0",
